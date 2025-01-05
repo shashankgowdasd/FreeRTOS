@@ -1,0 +1,44 @@
+#include "stm32f4xx_hal.h"
+
+/*
+ * Here we chack the particlular pin is set or not (GPIOC 13pin)
+ */
+
+void p13_interrupt_init(void)
+{
+	RCC->AHB1ENR |= 4;  			// Enable GPIOC clock (0b100)
+
+	RCC->APB2ENR |= 0x4000; 		// ENbale SYSCLK clock
+
+	GPIOC->MODER &= ~(0x0C000000);	// configure PC13 for push button interrupt
+
+	SYSCFG->EXTICR[3] &= ~0x00F0;   // clear port selection for EXT13
+
+	SYSCFG->EXTICR[3] |= ~0x0020;   // select port c for EXT13
+
+	EXTI->IMR |= 0x2000;			// unmask EXTI3
+
+	EXTI->FTSR |= 0x2000;			// select falling edge trigger.
+
+	NVIC_SetPriority(EXTI15_10_IRQn, 6);
+
+	NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
+
+
+void gpio_init(void)
+{
+	RCC->AHB1ENR |= 4; 				// Enable GPIOC clock
+}
+
+uint8_t read_digital_sensor(void)
+{
+	if( GPIOC->IDR & 0x2000)     // 0x2000  => 0b 0010 0000 0000 0000
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}

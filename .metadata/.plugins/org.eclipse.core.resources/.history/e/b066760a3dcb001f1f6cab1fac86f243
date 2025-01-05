@@ -1,0 +1,20 @@
+#include "stm32f4xx_hal.h"
+
+/*
+ * Here we chack the particlular pin is set or not
+ */
+
+void p13_interrupt_init(void)
+{
+	RCC->AHB1ENR |= 4;  			// Enable GPIOC clock (0b100)
+
+	RCC->APB2ENR |= 0x4000; 		// ENbale SYSCLK clock
+
+	GPIOC->MODER &= ~(0x0C000000);	// configure PC13 for push button interrupt
+
+	SYSCFG->EXTICR[3] &= ~0x00F0;   // clear port selection for EXT13
+
+	SYSCFG->EXTICR[3] |= ~0x0020;   // select port c for EXT13
+
+
+}

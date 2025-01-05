@@ -1,0 +1,10 @@
+17:35:17 **** Incremental Build of configuration Debug for project 07_GettingTaskPriority ****
+make -j8 all 
+arm-none-eabi-size   07_GettingTaskPriority.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19652	     36	  20500	  40188	   9cfc	07_GettingTaskPriority.elf
+Finished building: default.size.stdout
+ 
+
+17:35:18 Build Finished. 0 errors, 0 warnings. (took 585ms)
+

@@ -1,0 +1,7 @@
+#include "stm32f4xx_hal.h"
+
+
+void p13_interrupt_init(void)
+{
+	RCC->AHB1ENR |= 4;  	// Enable GPIOC clock (0b100)
+}

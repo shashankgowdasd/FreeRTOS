@@ -1,0 +1,14 @@
+#include "stm32f4xx_hal.h"
+
+/*
+ * Here we chack the particlular pin is set or not
+ */
+
+void p13_interrupt_init(void)
+{
+	RCC->AHB1ENR |= 4;  	// Enable GPIOC clock (0b100)
+
+	RCC->APB2ENR |= 0x4000; 	// ENbale SYSCLK clock
+
+
+}

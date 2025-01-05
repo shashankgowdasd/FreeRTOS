@@ -1,0 +1,10 @@
+16:22:49 **** Incremental Build of configuration Debug for project 21_Counting_sempahore ****
+make -j8 all 
+arm-none-eabi-size   21_Counting_sempahore.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25988	    124	  20516	  46628	   b624	21_Counting_sempahore.elf
+Finished building: default.size.stdout
+ 
+
+16:22:50 Build Finished. 0 errors, 0 warnings. (took 599ms)
+

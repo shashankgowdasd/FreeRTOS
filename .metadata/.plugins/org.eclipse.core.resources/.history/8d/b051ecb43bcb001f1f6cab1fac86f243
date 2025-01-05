@@ -1,0 +1,21 @@
+#include "stm32f4xx_hal.h"
+
+void adc_init(void)
+{
+	RCC->AHB1ENR |= (1<<0); // for enabling the GPIOA pin 0 for ADC pin. 0x00000001 = 0B
+	RCC->APB2ENR |= (1<<8); // setting the 8th bit for enabling the ADC.
+	GPIOA->MODER |= 0xC;    // for setting the mode register for GPIOA pin 0. for analog mode.
+
+	ADC1->CR2 = 0; 			// SW trigger (software trigger)
+	ADC1->SQR3 = 1;			// conversion sequence starts at ch 1  -> single channel
+	ADC1->SQR1 = 0;			// conversion sequence length 1
+	ADC1->CR2 = 1;			// enable ADC1
+}
+
+
+uint32_t read_analog_sensor(void)
+{
+	ADC1->CR2 |= (1<<30);	// start conversion on regular channels.
+	while((ADC1->SR & 2)){}	// check for the status register whether End of conversion is set or not.
+	return ADC1->DR;
+}

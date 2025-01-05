@@ -1,0 +1,7 @@
+#include "stm32f4xx_hal.h"
+
+void adc_init(void)
+{
+	RCC->AHB1ENR |= (1<<0); // for enabling the GPIOA pin 0 for ADC pin. 0x00000001 = 0B
+	RCC->AHB
+}

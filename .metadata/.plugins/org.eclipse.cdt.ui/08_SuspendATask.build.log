@@ -1,0 +1,10 @@
+18:19:30 **** Incremental Build of configuration Debug for project 08_SuspendATask ****
+make -j8 all 
+arm-none-eabi-size   08_SuspendATask.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19828	     36	  20508	  40372	   9db4	08_SuspendATask.elf
+Finished building: default.size.stdout
+ 
+
+18:19:31 Build Finished. 0 errors, 0 warnings. (took 652ms)
+
